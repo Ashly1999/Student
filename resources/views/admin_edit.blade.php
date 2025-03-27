@@ -74,18 +74,35 @@
 <body>
 
     <div class="container">
-        <h2>Login Here</h2>
-        <form method="post" action="{{route('login.store')}}">
+        <h2>Student Registration</h2>
+        <form method="post" action="{{route('admin.update',$student->id)}}">
             @csrf
+            <label>First Name</label>
+            <input type="text" name="fname" value="{{$student->first_name}}" required>
 
+            <label>Last Name</label>
+            <input type="text" name="lname" value="{{$student->last_name}}" required>
+
+            <label>Email</label>
+            <input type="email" name="email" value="{{$student->email}}" required>
+
+            <label>Number</label>
+            <input type="text" name="number" value="{{$student->number}}" required>
+
+            <label>Course</label>
+            <select name="course" id="course" value="{{$student->course}}">
+                <option value="btech">B.Tech</option>
+                <option value="bca">BCA</option>
+                <option value="mca">MCA</option>
+                <option value="mtech">M.Tech</option>
+            </select>
             <label>Username</label>
-            <input type="uname" name="uname" required>
+            <input type="uname" name="uname" value="{{$student->username}}" required>
 
             <label>Password</label>
-            <input type="password" name="psw" required>
+            <input type=" password" name="psw" value="{{$student->password}}" required>
 
-            <button type="submit" class="btn">Save</button><br><br>
-            <a href="{{route('student.register')}}" style='text-decoration:none;color: brown;'>Register Here</a>
+            <button type=" submit" class="btn">Edit</button>
         </form>
     </div>
 

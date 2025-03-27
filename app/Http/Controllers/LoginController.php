@@ -52,7 +52,8 @@ class LoginController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $student=Student::find($id);
+        return view('admin_edit',compact('student'));
     }
 
     /**
@@ -60,7 +61,19 @@ class LoginController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $student=Student::find($id);
+        $student->update([
+
+            '$first_name'=>$request->fname,
+            '$last_name' => $request->lname,
+            '$email' => $request->email,
+            '$number' => $request->number,
+            '$course' => $request->course,
+            '$username' => $request->uname,
+            '$password' => $request->psw,
+        ]);
+        return redirect()->route('student.view')->with('success', "updated successfully");
+
     }
 
     /**
@@ -68,6 +81,8 @@ class LoginController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $student=Student::find($id);
+        $student->delete();
+        return redirect()->route('student.view')->with('success', "deleted successfully");
     }
 }
